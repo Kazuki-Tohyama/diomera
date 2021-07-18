@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev-build": "npm install && vue-cli-service build --mode development",
-    "prod-build": "npm install && vue-cli-service build --mode production"
+    "prod-build": "npm install && npm install eslint && vue-cli-service build --mode production"
   },
   "dependencies": {
     "@vue/cli-service": "~4.5.0",
