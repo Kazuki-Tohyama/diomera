@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev-build": "npm install && vue-cli-service build --mode development",
-    "prod-build": "npm install && vue-cli-service build --mode producution"
+    "prod-build": "npm install && vue-cli-service build --mode production"
   },
   "dependencies": {
     "core-js": "^3.6.5",
