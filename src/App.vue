@@ -55,11 +55,14 @@ export default {
       }
 
       if (!this.errors.length) {
+        // TODO: POST処理を実装
         const payload = {
           name: this.name,
           title: this.title,
         };
-        const res = await axios.post(this.formUrl, payload);
+        await axios.post(this.formUrl, payload).then((res) => {
+          console.log(res);
+        });
       }
 
       e.preventDefault();
