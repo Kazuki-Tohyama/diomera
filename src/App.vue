@@ -1,24 +1,21 @@
 <template>
   <div id="app">
     <HelloWorld msg="diomera" />
-    <form id="form" @submit.prevent="checkError" :action="formUrl" method="post">
-      <p v-if="errors.length">
+    <form
+      id="form"
+      @submit.prevent="checkError"
+      :action="formUrl"
+      method="post"
+    >
+      <div v-if="errors.length">
         <ul>
-          <li v-for="(error, index) in errors" :key="index" >{{ error }}</li>
+          <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
         </ul>
-      </p>
+      </div>
       <p><label for="name">名前</label></p>
-      <input 
-        id="name" 
-        type="text" 
-        v-model="name" 
-      />
+      <input id="name" type="text" v-model="name" />
       <p><label for="title">タイトル</label></p>
-      <input 
-        id="title" 
-        type="text" 
-        v-model="title" 
-      />
+      <input id="title" type="text" v-model="title" />
       <p><input type="submit" value="送信" /></p>
     </form>
   </div>
