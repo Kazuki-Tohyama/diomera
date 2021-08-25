@@ -23,7 +23,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-const axios = require("axios");
+import axios from "axios";
 
 export default {
   name: "App",
@@ -60,9 +60,14 @@ export default {
           name: this.name,
           title: this.title,
         };
-        await axios.post(this.formUrl, payload).then((res) => {
-          console.log(res);
-        });
+        await axios
+          .post(this.formUrl, payload)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
 
       e.preventDefault();
