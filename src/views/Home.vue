@@ -17,7 +17,6 @@
 
 <script>
 import axios from 'axios';
-import { Storage } from 'aws-amplify';
 
 export default {
   name: 'Home',
@@ -65,7 +64,7 @@ export default {
           .catch((err) => {
             console.log(err);
           });
-        await Storage.put(this.file.name, this.file);
+        // await Storage.put(this.file.name, this.file);
       }
 
       e.preventDefault();

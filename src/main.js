@@ -1,22 +1,22 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router.js';
-import Amplify from 'aws-amplify';
 
-Amplify.configure({
-  // Auth: {
-  //   identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab', //REQUIRED - Amazon Cognito Identity Pool ID
-  //   region: 'XX-XXXX-X', // REQUIRED - Amazon Cognito Region
-  //   userPoolId: 'XX-XXXX-X_abcd1234', //OPTIONAL - Amazon Cognito User Pool ID
-  //   userPoolWebClientId: 'XX-XXXX-X_abcd1234', //OPTIONAL - Amazon Cognito Web Client ID
-  // },
-  Storage: {
-    AWSS3: {
-      bucket: process.env.VUE_APP_DIOMERA_BUCKET_NAME,
-      region: 'ap-northeast-1',
-    }
-  }
-});
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCPQl11pQLVbdtNmwiMAQCQGKRzJu99XoM",
+  authDomain: "diomera-4c607.firebaseapp.com",
+  projectId: "diomera-4c607",
+  storageBucket: "diomera-4c607.appspot.com",
+  messagingSenderId: "555006225057",
+  appId: "1:555006225057:web:98cfd88cedea08d3ad1ee0",
+  measurementId: "G-L715Z4J6FL"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 Vue.config.productionTip = false;
 
