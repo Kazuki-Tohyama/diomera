@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
 
 export default {
   name: 'Home',
@@ -52,19 +52,12 @@ export default {
       }
 
       if (!this.errors.length) {
-        const payload = {
-          name: this.name,
-          title: this.title,
-        };
-        await axios
-          .post(this.formUrl, payload)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        // await Storage.put(this.file.name, this.file);
+        const storage = getStorage();
+        const storageRef = ref(storage, this.$store.state.uid + '/' + this.file.name);
+        uploadBytes(storageRef, this.file).then((snapshot) => {
+          console.log(snapshot);
+          console.log('Uploaded a blob or file!');
+        });
       }
 
       e.preventDefault();

@@ -33,8 +33,8 @@ export default {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          this.$store.commit('login');
-          this.$router.push({ name: 'home'}).catch((err) => {console.log(err)});
+          this.$store.commit('login', user.uid);
+          this.$router.push({ name: 'home'}).catch((err) => { console.log(err) });
         })
         .catch((error) => {
           // const errorCode = error.code;

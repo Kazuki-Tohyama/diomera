@@ -34,8 +34,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('from.params.isAuthenticated');
-  console.log(from.params.isAuthenticated);
   if (to.matched.some(record => record.meta.requireAuth) && !store.state.isLoggedIn) {
     // 認証していなければログインページにリダイレクトする
     next({
