@@ -5,8 +5,6 @@
         <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
       </ul>
     </div>
-    <p><label for="name">名前</label></p>
-    <input id="name" type="text" v-model="name" />
     <p><label for="title">タイトル</label></p>
     <input id="title" type="text" v-model="title" />
     <p><label for="file">ファイル</label></p>
@@ -17,6 +15,9 @@
 
 <script>
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getFirestore, addDoc, collection } from 'firebase/firestore'; 
+
+const db = getFirestore();
 
 export default {
   name: 'Home',
@@ -24,7 +25,6 @@ export default {
     return {
       errors: [],
       formUrl: process.env.VUE_APP_API_ENDPOINT,
-      name: '',
       title: '',
       file: null,
     };
@@ -52,12 +52,21 @@ export default {
       }
 
       if (!this.errors.length) {
+        const path = this.$store.state.uid + '/' + this.file.name;
+
         const storage = getStorage();
-        const storageRef = ref(storage, this.$store.state.uid + '/' + this.file.name);
+        const storageRef = ref(storage, path);
         uploadBytes(storageRef, this.file).then((snapshot) => {
           console.log(snapshot);
           console.log('Uploaded a blob or file!');
         });
+
+        const fileDocRef = await addDoc(collection(db, 'users', this.$store.state.uid, 'filedata'), {
+          title: this.title,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+        console.log('Document written with ID: ', fileDocRef.id);
       }
 
       e.preventDefault();
